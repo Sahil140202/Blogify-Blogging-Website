@@ -18,9 +18,9 @@ const methodOverride = require("method-override");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then((e) => console.log("mongoDB connected"));
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch(error => console.error("Connection error", error));
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
